@@ -48,7 +48,7 @@ class organizationController extends Controller
         $organization = organization::where('contact_email', $req->user()->email)->first();
         if ($organization) {
 
-            return response()->json(['message' => 'Successfully Login'], 200);
+            return response()->json(['message' => 'Successfully Login','id'=>$organization->id], 200);
         } else {
             return response()->json(['message' => 'Create an account first'], 400);
         }
