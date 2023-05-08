@@ -48,7 +48,7 @@ class organizationController extends Controller
         $organization = organization::where('contact_email', $req->user()->email)->first();
         if ($organization) {
 
-            return response()->json(['message' => 'Successfully Login','id'=>$organization->id], 200);
+            return response()->json(['message' => 'Successfully Login','Organization_id'=>$organization->id], 200);
         } else {
             return response()->json(['message' => 'Create an account first'], 400);
         }
@@ -96,20 +96,6 @@ class organizationController extends Controller
         return response()->json(['message' => 'Data deleted successfully'], 200);
     }
     }
-    function add_item(Request $req){
-        $req->validate(['item_name'=>'required|string']);
-          $user=auth()->user();
-        $organization=organization::where('user_id',$user->id)->first();
-        if($organization){
-            $item=new item;
-            $item->item_name=$req->input('item_name');
-            $item->organization_id=$organization->id;
-            $item->save();
-            return response()->json(['message' => 'Item has added into your organization with id as','id'=>$organization->id], 201);
-        }else
-        {
-            return response()->json(['message' => 'Unauthorized organization'], 403);
-        }
-        }
+
 }
 
