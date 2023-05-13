@@ -39,7 +39,7 @@ class ItemController extends Controller
     }
     function update_item(Request $req,$id)
     {
-        $req->validate(['name'=>'required']);
+        $req->validate(['name'=>'required|string']);
 
         $user=auth()->user();
         $organization=organization::where('user_id',$user->id)->first();
